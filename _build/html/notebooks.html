@@ -1,0 +1,3164 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Predicción del riesgo de abandono académico en estudiantes universitarios &#8212; cl_jbook_ml202530</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="EDA - Exploratory Data Analysis" href="edakk.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/uninorte.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/uninorte.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Información del Dataset
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="edakk.html">EDA - Exploratory Data Analysis</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Predicción del riesgo de abandono académico en estudiantes universitarios</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fnotebooks.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/notebooks.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Predicción del riesgo de abandono académico en estudiantes universitarios</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#renombrar-columnas">Renombrar columnas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#agrupar-categorias-en-las-variable-categoricas">Agrupar categorias en las variable categóricas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#encoding-variable-target">Encoding variable Target</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-categoricas">Variables categóricas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-numericas">Variables numéricas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-seleccionadas">Variables seleccionadas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tratamiento-de-variables-categoricas-clasificacion">Tratamiento de variables categóricas - Clasificación</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#one-hot-encoder">One-Hot encoder</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tratamiento-de-variables-numericas-clasificacion">Tratamiento de variables númericas - Clasificación</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#robustscaler-para-distribuciones-cero-infladas">RobustScaler para distribuciones cero-infladas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#separamos-los-conjuntos-de-validacion-train-y-test-clasificacion">Separamos los conjuntos de validación, train y test - Clasificación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#balancear-clases">Balancear clases</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grid-search-manual-con-kfold-knn-clasificacion">Grid-Search manual con Kfold - KNN Clasificación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metricas-de-evaluacion-knn-clasificacion">Métricas de evaluación - KNN Clasificación</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#curva-roc">Curva ROC</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matriz-de-confusion">Matriz de confusión</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-importance-knn-regresion">Feature Importance - KNN Regresión</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#codificacion-variable-objetivo-en-regresion">Codificación variable objetivo en regresión</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Variables categóricas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Variables numéricas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Variables seleccionadas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tratamiento-variables-categoricas-regresion">Tratamiento variables categóricas - Regresión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tratamiento-variables-numericas-regresion">Tratamiento variables numéricas - Regresión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#separacion-de-los-datasets-regresion">Separación de los Datasets - Regresión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grid-search-manual-con-kfold-knn-regresion">Grid-Search manual con KFold - KNN regresión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metricas-evaluacion">Métricas evaluación</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grafica-valores-reales-vs-predichos">Gráfica valores reales vs predichos</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="prediccion-del-riesgo-de-abandono-academico-en-estudiantes-universitarios">
+<h1>Predicción del riesgo de abandono académico en estudiantes universitarios<a class="headerlink" href="#prediccion-del-riesgo-de-abandono-academico-en-estudiantes-universitarios" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Cargamos la base de datos “Predict Students’ Dropout and Academic Success”</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data\data.csv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Marital status</th>
+      <th>Application mode</th>
+      <th>Application order</th>
+      <th>Course</th>
+      <th>Daytime/evening attendance\t</th>
+      <th>Previous qualification</th>
+      <th>Previous qualification (grade)</th>
+      <th>Nacionality</th>
+      <th>Mother's qualification</th>
+      <th>Father's qualification</th>
+      <th>...</th>
+      <th>Curricular units 2nd sem (credited)</th>
+      <th>Curricular units 2nd sem (enrolled)</th>
+      <th>Curricular units 2nd sem (evaluations)</th>
+      <th>Curricular units 2nd sem (approved)</th>
+      <th>Curricular units 2nd sem (grade)</th>
+      <th>Curricular units 2nd sem (without evaluations)</th>
+      <th>Unemployment rate</th>
+      <th>Inflation rate</th>
+      <th>GDP</th>
+      <th>Target</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>17</td>
+      <td>5</td>
+      <td>171</td>
+      <td>1</td>
+      <td>1</td>
+      <td>122.0</td>
+      <td>1</td>
+      <td>19</td>
+      <td>12</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.000000</td>
+      <td>0</td>
+      <td>10.8</td>
+      <td>1.4</td>
+      <td>1.74</td>
+      <td>Dropout</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>15</td>
+      <td>1</td>
+      <td>9254</td>
+      <td>1</td>
+      <td>1</td>
+      <td>160.0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>3</td>
+      <td>...</td>
+      <td>0</td>
+      <td>6</td>
+      <td>6</td>
+      <td>6</td>
+      <td>13.666667</td>
+      <td>0</td>
+      <td>13.9</td>
+      <td>-0.3</td>
+      <td>0.79</td>
+      <td>Graduate</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>1</td>
+      <td>5</td>
+      <td>9070</td>
+      <td>1</td>
+      <td>1</td>
+      <td>122.0</td>
+      <td>1</td>
+      <td>37</td>
+      <td>37</td>
+      <td>...</td>
+      <td>0</td>
+      <td>6</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.000000</td>
+      <td>0</td>
+      <td>10.8</td>
+      <td>1.4</td>
+      <td>1.74</td>
+      <td>Dropout</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>17</td>
+      <td>2</td>
+      <td>9773</td>
+      <td>1</td>
+      <td>1</td>
+      <td>122.0</td>
+      <td>1</td>
+      <td>38</td>
+      <td>37</td>
+      <td>...</td>
+      <td>0</td>
+      <td>6</td>
+      <td>10</td>
+      <td>5</td>
+      <td>12.400000</td>
+      <td>0</td>
+      <td>9.4</td>
+      <td>-0.8</td>
+      <td>-3.12</td>
+      <td>Graduate</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2</td>
+      <td>39</td>
+      <td>1</td>
+      <td>8014</td>
+      <td>0</td>
+      <td>1</td>
+      <td>100.0</td>
+      <td>1</td>
+      <td>37</td>
+      <td>38</td>
+      <td>...</td>
+      <td>0</td>
+      <td>6</td>
+      <td>6</td>
+      <td>6</td>
+      <td>13.000000</td>
+      <td>0</td>
+      <td>13.9</td>
+      <td>-0.3</td>
+      <td>0.79</td>
+      <td>Graduate</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 37 columns</p>
+</div></div></div>
+</div>
+<p>Revisamos el tipo de dato de las columnas del Dataframe.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 4424 entries, 0 to 4423
+Data columns (total 37 columns):
+ #   Column                                          Non-Null Count  Dtype  
+---  ------                                          --------------  -----  
+ 0   Marital status                                  4424 non-null   int64  
+ 1   Application mode                                4424 non-null   int64  
+ 2   Application order                               4424 non-null   int64  
+ 3   Course                                          4424 non-null   int64  
+ 4   Daytime/evening attendance	                     4424 non-null   int64  
+ 5   Previous qualification                          4424 non-null   int64  
+ 6   Previous qualification (grade)                  4424 non-null   float64
+ 7   Nacionality                                     4424 non-null   int64  
+ 8   Mother&#39;s qualification                          4424 non-null   int64  
+ 9   Father&#39;s qualification                          4424 non-null   int64  
+ 10  Mother&#39;s occupation                             4424 non-null   int64  
+ 11  Father&#39;s occupation                             4424 non-null   int64  
+ 12  Admission grade                                 4424 non-null   float64
+ 13  Displaced                                       4424 non-null   int64  
+ 14  Educational special needs                       4424 non-null   int64  
+ 15  Debtor                                          4424 non-null   int64  
+ 16  Tuition fees up to date                         4424 non-null   int64  
+ 17  Gender                                          4424 non-null   int64  
+ 18  Scholarship holder                              4424 non-null   int64  
+ 19  Age at enrollment                               4424 non-null   int64  
+ 20  International                                   4424 non-null   int64  
+ 21  Curricular units 1st sem (credited)             4424 non-null   int64  
+ 22  Curricular units 1st sem (enrolled)             4424 non-null   int64  
+ 23  Curricular units 1st sem (evaluations)          4424 non-null   int64  
+ 24  Curricular units 1st sem (approved)             4424 non-null   int64  
+ 25  Curricular units 1st sem (grade)                4424 non-null   float64
+ 26  Curricular units 1st sem (without evaluations)  4424 non-null   int64  
+ 27  Curricular units 2nd sem (credited)             4424 non-null   int64  
+ 28  Curricular units 2nd sem (enrolled)             4424 non-null   int64  
+ 29  Curricular units 2nd sem (evaluations)          4424 non-null   int64  
+ 30  Curricular units 2nd sem (approved)             4424 non-null   int64  
+ 31  Curricular units 2nd sem (grade)                4424 non-null   float64
+ 32  Curricular units 2nd sem (without evaluations)  4424 non-null   int64  
+ 33  Unemployment rate                               4424 non-null   float64
+ 34  Inflation rate                                  4424 non-null   float64
+ 35  GDP                                             4424 non-null   float64
+ 36  Target                                          4424 non-null   object 
+dtypes: float64(7), int64(29), object(1)
+memory usage: 1.2+ MB
+</pre></div>
+</div>
+</div>
+</div>
+<p>Observamos el número de valores únicos de cada variable.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Marital status                                      6
+Application mode                                   18
+Application order                                   8
+Course                                             17
+Daytime/evening attendance\t                        2
+Previous qualification                             17
+Previous qualification (grade)                    101
+Nacionality                                        21
+Mother&#39;s qualification                             29
+Father&#39;s qualification                             34
+Mother&#39;s occupation                                32
+Father&#39;s occupation                                46
+Admission grade                                   620
+Displaced                                           2
+Educational special needs                           2
+Debtor                                              2
+Tuition fees up to date                             2
+Gender                                              2
+Scholarship holder                                  2
+Age at enrollment                                  46
+International                                       2
+Curricular units 1st sem (credited)                21
+Curricular units 1st sem (enrolled)                23
+Curricular units 1st sem (evaluations)             35
+Curricular units 1st sem (approved)                23
+Curricular units 1st sem (grade)                  805
+Curricular units 1st sem (without evaluations)     11
+Curricular units 2nd sem (credited)                19
+Curricular units 2nd sem (enrolled)                22
+Curricular units 2nd sem (evaluations)             30
+Curricular units 2nd sem (approved)                20
+Curricular units 2nd sem (grade)                  786
+Curricular units 2nd sem (without evaluations)     10
+Unemployment rate                                  10
+Inflation rate                                      9
+GDP                                                10
+Target                                              3
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<section id="renombrar-columnas">
+<h2>Renombrar columnas<a class="headerlink" href="#renombrar-columnas" title="Permalink to this heading">#</a></h2>
+<p>Renombramos las columnas de modo que sea más fácil trabajar con ellas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Marital status&#39;</span><span class="p">:</span> <span class="s1">&#39;Marital&#39;</span><span class="p">,</span> <span class="s2">&quot;Mother&#39;s occupation&quot;</span><span class="p">:</span> <span class="s1">&#39;Mother_occ&#39;</span><span class="p">,</span> <span class="s2">&quot;Father&#39;s occupation&quot;</span><span class="p">:</span> <span class="s1">&#39;Father_occ&#39;</span><span class="p">,</span> <span class="s2">&quot;Age at enrollment&quot;</span><span class="p">:</span> <span class="s1">&#39;Age&#39;</span>
+                        <span class="p">,</span> <span class="s2">&quot;Previous qualification&quot;</span><span class="p">:</span> <span class="s1">&#39;P_quali&#39;</span><span class="p">,</span> <span class="s1">&#39;Daytime/evening attendance</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">:</span> <span class="s1">&#39;Attendance&#39;</span><span class="p">,</span> <span class="s2">&quot;Mother&#39;s qualification&quot;</span><span class="p">:</span> <span class="s2">&quot;Mother_quali&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;Father&#39;s qualification&quot;</span><span class="p">:</span> <span class="s2">&quot;Father_quali&quot;</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Target&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Target
+Graduate    2209
+Dropout     1421
+Enrolled     794
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Observamos que la variable “Target” presenta tres categorías diferentes. Dado que el objetivo de este análisis es predecir si un estudiante abandona o no la institución, se decidió reclasificar los registros con estado “Enrolled” como “Graduate”. Esto permite reducir el problema a dos categorías claramente definidas (retención y deserción), lo que facilita tanto el modelado como la interpretación de los resultados. Además, en el artículo introductorio de la base de datos, las categorías “Graduate” y “Enrolled” se utilizan para representar diferentes niveles de desempeño de estudiantes que no abandonaron la institución.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Target&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Target&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;Enrolled&#39;</span><span class="p">,</span> <span class="s1">&#39;Graduate&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Target&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Target
+Graduate    3003
+Dropout     1421
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">variables_categoricas</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Marital&#39;</span><span class="p">,</span> <span class="s1">&#39;Application mode&#39;</span><span class="p">,</span> <span class="s1">&#39;Application order&#39;</span><span class="p">,</span> <span class="s1">&#39;Course&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;Attendance&#39;</span><span class="p">,</span> <span class="s1">&#39;P_quali&#39;</span><span class="p">,</span> 
+       <span class="s1">&#39;Nacionality&#39;</span><span class="p">,</span> <span class="s1">&#39;Mother_quali&#39;</span><span class="p">,</span> <span class="s1">&#39;Father_quali&#39;</span><span class="p">,</span> <span class="s1">&#39;Mother_occ&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;Father_occ&#39;</span><span class="p">,</span> <span class="s1">&#39;Displaced&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;Educational special needs&#39;</span><span class="p">,</span> <span class="s1">&#39;Debtor&#39;</span><span class="p">,</span> <span class="s1">&#39;Tuition fees up to date&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;Gender&#39;</span><span class="p">,</span> <span class="s1">&#39;Scholarship holder&#39;</span><span class="p">,</span> <span class="s1">&#39;International&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Se creó una copia del DataFrame original con el propósito de realizar modificaciones sin alterar los datos fuente, garantizando la preservación de la información original. Posteriormente, se convirtieron las columnas categóricas a tipo string, con el fin de facilitar su posterior proceso de codificación.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_copy</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">df_copy</span><span class="p">[</span><span class="n">variables_categoricas</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_copy</span><span class="p">[</span><span class="n">variables_categoricas</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;str&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">variables_numericas</span> <span class="o">=</span> <span class="n">df_copy</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;int64&#39;</span><span class="p">,</span> <span class="s1">&#39;float64&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Obsevamos el número de valores únicos en las variables categóricas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_copy</span><span class="p">[</span><span class="n">variables_categoricas</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Marital                       6
+Application mode             18
+Application order             8
+Course                       17
+Attendance                    2
+P_quali                      17
+Nacionality                  21
+Mother_quali                 29
+Father_quali                 34
+Mother_occ                   32
+Father_occ                   46
+Displaced                     2
+Educational special needs     2
+Debtor                        2
+Tuition fees up to date       2
+Gender                        2
+Scholarship holder            2
+International                 2
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="agrupar-categorias-en-las-variable-categoricas">
+<h2>Agrupar categorias en las variable categóricas<a class="headerlink" href="#agrupar-categorias-en-las-variable-categoricas" title="Permalink to this heading">#</a></h2>
+<p>Dado que algunas variables categóricas presentan alta cardinalidad, con numerosas clases que cuentan con una única observación, se optó por agrupar dichas categorías poco frecuentes en una sola denominada “Otras”.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">variables_categoricas</span><span class="p">:</span>
+    <span class="n">cats</span> <span class="o">=</span> <span class="n">df_copy</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+    <span class="n">top_cats</span> <span class="o">=</span> <span class="n">cats</span><span class="p">[</span><span class="n">cats</span> <span class="o">&gt;</span> <span class="mi">15</span><span class="p">]</span><span class="o">.</span><span class="n">index</span>
+    <span class="n">df_copy</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_copy</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">df_copy</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">top_cats</span><span class="p">),</span> <span class="s1">&#39;Otras&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_copy</span><span class="p">[</span><span class="n">variables_categoricas</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Marital                       5
+Application mode             14
+Application order             7
+Course                       17
+Attendance                    2
+P_quali                      10
+Nacionality                   3
+Mother_quali                 11
+Father_quali                 12
+Mother_occ                   14
+Father_occ                   14
+Displaced                     2
+Educational special needs     2
+Debtor                        2
+Tuition fees up to date       2
+Gender                        2
+Scholarship holder            2
+International                 2
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="encoding-variable-target">
+<h2>Encoding variable Target<a class="headerlink" href="#encoding-variable-target" title="Permalink to this heading">#</a></h2>
+<p>Se realizó la partición del conjunto de datos, separando la variable objetivo (Target) de las variables predictoras, con el fin de preparar la información para el modelado.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">df_copy</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;Target&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df_copy</span><span class="p">[</span><span class="s1">&#39;Target&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Se aplicó Label Encoding a la variable objetivo, dado que corresponde a una variable categórica binaria con dos clases (“Graduate” y “Dropout”), las cuales pueden representarse mediante valores numéricos 0 y 1 para un tratamiento más óptimo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">le</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">le</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="variables-categoricas">
+<h3>Variables categóricas<a class="headerlink" href="#variables-categoricas" title="Permalink to this heading">#</a></h3>
+<p>Utilizamos Chi cuadrado con el fin de buscar la relación entre variables categóricas y la variable objetivo</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">chi2_contingency</span>
+
+<span class="n">resultados</span> <span class="o">=</span> <span class="p">{}</span> 
+
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">X</span><span class="p">[</span><span class="n">variables_categoricas</span><span class="p">]:</span>
+    <span class="n">tabla</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">y</span><span class="p">)</span>  <span class="c1"># tabla de contingencia</span>
+    <span class="n">chi2</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">dof</span><span class="p">,</span> <span class="n">expected</span> <span class="o">=</span> <span class="n">chi2_contingency</span><span class="p">(</span><span class="n">tabla</span><span class="p">)</span>
+    <span class="n">resultados</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;chi2&quot;</span><span class="p">:</span> <span class="n">chi2</span><span class="p">,</span> <span class="s2">&quot;p_value&quot;</span><span class="p">:</span> <span class="n">p</span><span class="p">}</span>
+
+<span class="n">chi_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">resultados</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;chi2&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">chi_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                 chi2        p_value
+Tuition fees up to date    811.931703  1.373782e-178
+Application mode           393.746352   4.678574e-76
+Course                     298.265142   5.832502e-54
+Scholarship holder         265.103692   1.324567e-59
+Debtor                     231.279904   3.134874e-52
+Mother_occ                 199.056677   2.134534e-35
+P_quali                    189.764702   4.610716e-36
+Gender                     183.164075   9.876586e-42
+Mother_quali               173.287015   5.783822e-32
+Father_occ                 161.010113   1.230909e-27
+Father_quali               151.036202   9.153439e-27
+Marital                     57.534326   9.556904e-12
+Displaced                   50.410213   1.247433e-12
+Application order           39.395275   5.987546e-07
+Attendance                  28.117616   1.141620e-07
+Nacionality                  2.074581   3.544136e-01
+International                0.343001   5.581023e-01
+Educational special needs    0.001281   9.714462e-01
+</pre></div>
+</div>
+</div>
+</div>
+<p>De las variables categóricas seleccionaremos las 5 más relevantes, en este caso:</p>
+<ul class="simple">
+<li><p>‘Tuition fees up to date’</p></li>
+<li><p>Application mode</p></li>
+<li><p>‘Course’</p></li>
+<li><p>‘Scholarship holder’</p></li>
+<li><p>‘Debtor’</p></li>
+</ul>
+</section>
+<section id="variables-numericas">
+<h3>Variables numéricas<a class="headerlink" href="#variables-numericas" title="Permalink to this heading">#</a></h3>
+<p>Usaremos el test no paramétrico Kruskall-Wallis para observar la relación entre las variables numéricas y la variable objetivo (categórica), dado que no requiere de supuestos de normalidad, ni igualdad de varianzas entre las distribuciones</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">kruskal</span>
+
+<span class="n">resultados</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">X</span><span class="p">[</span><span class="n">variables_numericas</span><span class="p">]</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="n">grupos</span> <span class="o">=</span> <span class="p">[</span><span class="n">X</span><span class="p">[</span><span class="n">col</span><span class="p">][</span><span class="n">y</span> <span class="o">==</span> <span class="n">g</span><span class="p">]</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y</span><span class="p">)]</span>
+    <span class="n">stat</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">kruskal</span><span class="p">(</span><span class="o">*</span><span class="n">grupos</span><span class="p">)</span>
+    <span class="n">resultados</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;H&quot;</span><span class="p">:</span> <span class="n">stat</span><span class="p">,</span> <span class="s2">&quot;p_value&quot;</span><span class="p">:</span> <span class="n">p</span><span class="p">}</span>
+
+<span class="n">kruskal_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">resultados</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;H&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">kruskal_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                          H        p_value
+Curricular units 2nd sem (approved)             1495.722016   0.000000e+00
+Curricular units 1st sem (approved)             1209.270009  5.897583e-265
+Curricular units 2nd sem (grade)                1150.525035  3.449677e-252
+Curricular units 1st sem (grade)                 866.563566  1.822437e-190
+Age                                              346.851512   2.054831e-77
+Curricular units 2nd sem (enrolled)              156.845859   5.531360e-36
+Curricular units 1st sem (enrolled)              143.465715   4.649495e-33
+Curricular units 2nd sem (evaluations)            62.851155   2.229329e-15
+Admission grade                                   42.976023   5.541487e-11
+Previous qualification (grade)                    28.170828   1.110660e-07
+Curricular units 2nd sem (without evaluations)    19.212772   1.169285e-05
+Curricular units 1st sem (without evaluations)    15.080153   1.030410e-04
+GDP                                               14.169905   1.670207e-04
+Curricular units 1st sem (evaluations)            13.295269   2.660767e-04
+Inflation rate                                     2.374027   1.233684e-01
+Curricular units 2nd sem (credited)                2.098063   1.474859e-01
+Curricular units 1st sem (credited)                0.639493   4.238946e-01
+Unemployment rate                                  0.402052   5.260314e-01
+</pre></div>
+</div>
+</div>
+</div>
+<p>De las variables numéricas seleccionaremos las 4 más relevantes, en este caso:</p>
+<ul class="simple">
+<li><p>‘Curricular units 2nd sem (approved)’</p></li>
+<li><p>‘Curricular units 1st sem (approved)’</p></li>
+<li><p>‘Curricular units 1st sem (grade)’</p></li>
+<li><p>‘Curricular units 2nd sem (grade)’</p></li>
+</ul>
+</section>
+<section id="variables-seleccionadas">
+<h3>Variables seleccionadas<a class="headerlink" href="#variables-seleccionadas" title="Permalink to this heading">#</a></h3>
+<p>Variables con las que trabajaremos:</p>
+<ul class="simple">
+<li><p>‘Tuition fees up to date’</p></li>
+<li><p>‘Application mode’</p></li>
+<li><p>‘Course’</p></li>
+<li><p>‘Scholarship holder’</p></li>
+<li><p>‘Debtor’</p></li>
+<li><p>‘Curricular units 2nd sem (approved)’</p></li>
+<li><p>‘Curricular units 1st sem (approved)’</p></li>
+<li><p>‘Curricular units 1st sem (grade)’</p></li>
+<li><p>‘Curricular units 2nd sem (grade)’</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cols_seleccionadas</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Tuition fees up to date&#39;</span><span class="p">,</span><span class="s1">&#39;Application mode&#39;</span><span class="p">,</span><span class="s1">&#39;Course&#39;</span> <span class="p">,</span><span class="s1">&#39;Scholarship holder&#39;</span><span class="p">,</span><span class="s1">&#39;Debtor&#39;</span>
+<span class="p">,</span><span class="s1">&#39;Curricular units 2nd sem (approved)&#39;</span><span class="p">,</span><span class="s1">&#39;Curricular units 1st sem (approved)&#39;</span><span class="p">,</span><span class="s1">&#39;Curricular units 1st sem (grade)&#39;</span>
+<span class="p">,</span><span class="s1">&#39;Curricular units 2nd sem (grade)&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_classif</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">cols_seleccionadas</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Dejamos solo las variables importantes en los conjuntos de train, validation y test.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_classif</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Tuition fees up to date</th>
+      <th>Application mode</th>
+      <th>Course</th>
+      <th>Scholarship holder</th>
+      <th>Debtor</th>
+      <th>Curricular units 2nd sem (approved)</th>
+      <th>Curricular units 1st sem (approved)</th>
+      <th>Curricular units 1st sem (grade)</th>
+      <th>Curricular units 2nd sem (grade)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>17</td>
+      <td>171</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>15</td>
+      <td>9254</td>
+      <td>0</td>
+      <td>0</td>
+      <td>6</td>
+      <td>6</td>
+      <td>14.000000</td>
+      <td>13.666667</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>1</td>
+      <td>9070</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>17</td>
+      <td>9773</td>
+      <td>0</td>
+      <td>0</td>
+      <td>5</td>
+      <td>6</td>
+      <td>13.428571</td>
+      <td>12.400000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>39</td>
+      <td>8014</td>
+      <td>0</td>
+      <td>0</td>
+      <td>6</td>
+      <td>5</td>
+      <td>12.333333</td>
+      <td>13.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="tratamiento-de-variables-categoricas-clasificacion">
+<h2>Tratamiento de variables categóricas - Clasificación<a class="headerlink" href="#tratamiento-de-variables-categoricas-clasificacion" title="Permalink to this heading">#</a></h2>
+<section id="one-hot-encoder">
+<h3>One-Hot encoder<a class="headerlink" href="#one-hot-encoder" title="Permalink to this heading">#</a></h3>
+<p>Realizamos OneHot Encoding con las variables categóricas creando una columna por cada clase única en las variables no dicotómicas</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">OneHotEncoder</span>
+
+<span class="n">ohe</span> <span class="o">=</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">sparse</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">drop</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">handle_unknown</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span> <span class="c1">#crea el ohencoder</span>
+
+<span class="n">X_ohe</span>  <span class="o">=</span> <span class="n">ohe</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_classif</span><span class="p">[[</span><span class="s1">&#39;Application mode&#39;</span><span class="p">,</span> <span class="s1">&#39;Course&#39;</span><span class="p">]])</span> <span class="c1">#crea las columnas</span>
+<span class="n">ohe_columns</span> <span class="o">=</span> <span class="n">ohe</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">()</span> 
+<span class="n">X_ohe_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_ohe</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">ohe_columns</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">index</span><span class="p">)</span> <span class="c1">#lo convierte en df y crea las columnas</span>
+
+<span class="n">X_classif</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">X_classif</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Application mode&#39;</span><span class="p">,</span> <span class="s1">&#39;Course&#39;</span><span class="p">]),</span> <span class="n">X_ohe_df</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#concatena los dos df</span>
+
+<span class="n">X_classif</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\USER\miniconda3\envs\ml_venv\lib\site-packages\sklearn\preprocessing\_encoders.py:868: FutureWarning: `sparse` was renamed to `sparse_output` in version 1.2 and will be removed in 1.4. `sparse_output` is ignored unless you leave `sparse` to its default value.
+  warnings.warn(
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Tuition fees up to date</th>
+      <th>Scholarship holder</th>
+      <th>Debtor</th>
+      <th>Curricular units 2nd sem (approved)</th>
+      <th>Curricular units 1st sem (approved)</th>
+      <th>Curricular units 1st sem (grade)</th>
+      <th>Curricular units 2nd sem (grade)</th>
+      <th>Application mode_1</th>
+      <th>Application mode_15</th>
+      <th>Application mode_16</th>
+      <th>...</th>
+      <th>Course_9147</th>
+      <th>Course_9238</th>
+      <th>Course_9254</th>
+      <th>Course_9500</th>
+      <th>Course_9556</th>
+      <th>Course_9670</th>
+      <th>Course_9773</th>
+      <th>Course_9853</th>
+      <th>Course_9991</th>
+      <th>Course_Otras</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>6</td>
+      <td>6</td>
+      <td>14.000000</td>
+      <td>13.666667</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>5</td>
+      <td>6</td>
+      <td>13.428571</td>
+      <td>12.400000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>6</td>
+      <td>5</td>
+      <td>12.333333</td>
+      <td>13.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 38 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_classif</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Curricular units 2nd sem (approved)</th>
+      <th>Curricular units 1st sem (approved)</th>
+      <th>Curricular units 1st sem (grade)</th>
+      <th>Curricular units 2nd sem (grade)</th>
+      <th>Application mode_1</th>
+      <th>Application mode_15</th>
+      <th>Application mode_16</th>
+      <th>Application mode_17</th>
+      <th>Application mode_18</th>
+      <th>Application mode_39</th>
+      <th>...</th>
+      <th>Course_9147</th>
+      <th>Course_9238</th>
+      <th>Course_9254</th>
+      <th>Course_9500</th>
+      <th>Course_9556</th>
+      <th>Course_9670</th>
+      <th>Course_9773</th>
+      <th>Course_9853</th>
+      <th>Course_9991</th>
+      <th>Course_Otras</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>...</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>4.435805</td>
+      <td>4.706600</td>
+      <td>10.640822</td>
+      <td>10.230206</td>
+      <td>0.386076</td>
+      <td>0.006781</td>
+      <td>0.008590</td>
+      <td>0.197107</td>
+      <td>0.028029</td>
+      <td>0.177441</td>
+      <td>...</td>
+      <td>0.085895</td>
+      <td>0.080244</td>
+      <td>0.056962</td>
+      <td>0.173146</td>
+      <td>0.019439</td>
+      <td>0.060579</td>
+      <td>0.074819</td>
+      <td>0.043400</td>
+      <td>0.060579</td>
+      <td>0.002712</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>3.014764</td>
+      <td>3.094238</td>
+      <td>4.843663</td>
+      <td>5.210808</td>
+      <td>0.486903</td>
+      <td>0.082078</td>
+      <td>0.092291</td>
+      <td>0.397859</td>
+      <td>0.165074</td>
+      <td>0.382085</td>
+      <td>...</td>
+      <td>0.280241</td>
+      <td>0.271701</td>
+      <td>0.231796</td>
+      <td>0.378417</td>
+      <td>0.138079</td>
+      <td>0.238583</td>
+      <td>0.263129</td>
+      <td>0.203778</td>
+      <td>0.238583</td>
+      <td>0.052017</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>2.000000</td>
+      <td>3.000000</td>
+      <td>11.000000</td>
+      <td>10.750000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>5.000000</td>
+      <td>5.000000</td>
+      <td>12.285714</td>
+      <td>12.200000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>6.000000</td>
+      <td>6.000000</td>
+      <td>13.400000</td>
+      <td>13.333333</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>20.000000</td>
+      <td>26.000000</td>
+      <td>18.875000</td>
+      <td>18.571429</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>...</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+<p>8 rows × 35 columns</p>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="tratamiento-de-variables-numericas-clasificacion">
+<h2>Tratamiento de variables númericas - Clasificación<a class="headerlink" href="#tratamiento-de-variables-numericas-clasificacion" title="Permalink to this heading">#</a></h2>
+<section id="robustscaler-para-distribuciones-cero-infladas">
+<h3>RobustScaler para distribuciones cero-infladas<a class="headerlink" href="#robustscaler-para-distribuciones-cero-infladas" title="Permalink to this heading">#</a></h3>
+<p>Robust Scaler emplea la mediana y el rango intercuartílico (IQR) para escalar las variables numéricas, asignando a la mediana un valor de 0, al valor correspondiente al Q3 aproximadamente 0.5 y al valor correspondiente a Q1 aproximadamente -0.5. Este enfoque preserva la escala relativa de las variables mientras mitiga el impacto de valores atípicos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">RobustScaler</span>
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">RobustScaler</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Curricular units 2nd sem (approved)&#39;</span><span class="p">,</span> <span class="s1">&#39;Curricular units 1st sem (approved)&#39;</span><span class="p">,</span><span class="s1">&#39;Curricular units 1st sem (grade)&#39;</span><span class="p">,</span><span class="s1">&#39;Curricular units 2nd sem (grade)&#39;</span><span class="p">]</span>
+
+<span class="n">X_classif</span><span class="p">[</span><span class="n">num_columns</span><span class="p">]</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_classif</span><span class="p">[</span><span class="n">num_columns</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_classif</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Curricular units 2nd sem (approved)</th>
+      <th>Curricular units 1st sem (approved)</th>
+      <th>Curricular units 1st sem (grade)</th>
+      <th>Curricular units 2nd sem (grade)</th>
+      <th>Application mode_1</th>
+      <th>Application mode_15</th>
+      <th>Application mode_16</th>
+      <th>Application mode_17</th>
+      <th>Application mode_18</th>
+      <th>Application mode_39</th>
+      <th>...</th>
+      <th>Course_9147</th>
+      <th>Course_9238</th>
+      <th>Course_9254</th>
+      <th>Course_9500</th>
+      <th>Course_9556</th>
+      <th>Course_9670</th>
+      <th>Course_9773</th>
+      <th>Course_9853</th>
+      <th>Course_9991</th>
+      <th>Course_Otras</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>...</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>-0.141049</td>
+      <td>-0.097800</td>
+      <td>-0.685372</td>
+      <td>-0.762501</td>
+      <td>0.386076</td>
+      <td>0.006781</td>
+      <td>0.008590</td>
+      <td>0.197107</td>
+      <td>0.028029</td>
+      <td>0.177441</td>
+      <td>...</td>
+      <td>0.085895</td>
+      <td>0.080244</td>
+      <td>0.056962</td>
+      <td>0.173146</td>
+      <td>0.019439</td>
+      <td>0.060579</td>
+      <td>0.074819</td>
+      <td>0.043400</td>
+      <td>0.060579</td>
+      <td>0.002712</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>0.753691</td>
+      <td>1.031413</td>
+      <td>2.018193</td>
+      <td>2.017087</td>
+      <td>0.486903</td>
+      <td>0.082078</td>
+      <td>0.092291</td>
+      <td>0.397859</td>
+      <td>0.165074</td>
+      <td>0.382085</td>
+      <td>...</td>
+      <td>0.280241</td>
+      <td>0.271701</td>
+      <td>0.231796</td>
+      <td>0.378417</td>
+      <td>0.138079</td>
+      <td>0.238583</td>
+      <td>0.263129</td>
+      <td>0.203778</td>
+      <td>0.238583</td>
+      <td>0.052017</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>-1.250000</td>
+      <td>-1.666667</td>
+      <td>-5.119048</td>
+      <td>-4.722581</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>-0.750000</td>
+      <td>-0.666667</td>
+      <td>-0.535714</td>
+      <td>-0.561290</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>0.250000</td>
+      <td>0.333333</td>
+      <td>0.464286</td>
+      <td>0.438710</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>3.750000</td>
+      <td>7.000000</td>
+      <td>2.745536</td>
+      <td>2.466359</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>...</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+<p>8 rows × 35 columns</p>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="separamos-los-conjuntos-de-validacion-train-y-test-clasificacion">
+<h2>Separamos los conjuntos de validación, train y test - Clasificación<a class="headerlink" href="#separamos-los-conjuntos-de-validacion-train-y-test-clasificacion" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="n">X_train_full</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train_full</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_classif</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#stratify mantiene las proporciones de la clase </span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_val</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_val</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_train_full</span><span class="p">,</span> <span class="n">y_train_full</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y_train_full</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="balancear-clases">
+<h2>Balancear clases<a class="headerlink" href="#balancear-clases" title="Permalink to this heading">#</a></h2>
+<p>Porcentaje de 1’s en la variable “Target”</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_train</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6785983421250942
+</pre></div>
+</div>
+</div>
+</div>
+<p>Se observa que alrededor del 67% de los datos son 1 en la variable objetivo</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">imblearn.over_sampling</span> <span class="kn">import</span> <span class="n">SMOTE</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Se utiliza SMOTE con el fin de tratar el imbalance de clases.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">smote</span> <span class="o">=</span> <span class="n">SMOTE</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">X_train_bal</span><span class="p">,</span> <span class="n">y_train_bal</span> <span class="o">=</span> <span class="n">smote</span><span class="o">.</span><span class="n">fit_resample</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="n">X_train_bal</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_train_bal</span><span class="p">)</span>
+<span class="n">y_train_bal</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">y_train_bal</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="grid-search-manual-con-kfold-knn-clasificacion">
+<h2>Grid-Search manual con Kfold - KNN Clasificación<a class="headerlink" href="#grid-search-manual-con-kfold-knn-clasificacion" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">roc_curve</span><span class="p">,</span> <span class="n">auc</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">KFold</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Se llevó a cabo una búsqueda manual de los mejores parámetros con el objetivo de identificar el valor óptimo del número de vecinos (k_neighbors) en el modelo KNN.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k_values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">21</span><span class="p">]</span>
+<span class="n">kf</span> <span class="o">=</span> <span class="n">KFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">best_score</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">best_parameters</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">roc_results</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="n">mean_fpr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>  <span class="c1">#eje FPR común con el fin de promediar los valores otorgados de los diferentes Kfolds</span>
+
+<span class="k">for</span> <span class="n">K</span> <span class="ow">in</span> <span class="n">k_values</span><span class="p">:</span>
+    <span class="n">tprs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">aucs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">accs</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="k">for</span> <span class="n">train_idx</span><span class="p">,</span> <span class="n">val_idx</span> <span class="ow">in</span> <span class="n">kf</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X_train_bal</span><span class="p">):</span> 
+        <span class="n">X_train_fold</span> <span class="o">=</span> <span class="n">X_train_bal</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_idx</span><span class="p">]</span>
+        <span class="n">y_train_fold</span> <span class="o">=</span> <span class="n">y_train_bal</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_idx</span><span class="p">]</span>
+        
+        <span class="n">clf</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="n">K</span><span class="p">)</span>
+        <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_fold</span><span class="p">,</span> <span class="n">y_train_fold</span><span class="p">)</span>
+        
+        <span class="n">y_proba</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_val</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_val</span><span class="p">)</span>
+
+        <span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">roc_curve</span><span class="p">(</span><span class="n">y_val</span><span class="p">,</span> <span class="n">y_proba</span><span class="p">)</span>
+        <span class="n">aucs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">auc</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">))</span>
+        
+        <span class="n">tpr_interp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">mean_fpr</span><span class="p">,</span> <span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">)</span> <span class="c1">#se interpolan los valores con el fin de calcular la media de valores para la curva ROC</span>
+        <span class="n">tpr_interp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="c1">#primer valor de TPR se la asigna para que empieze en cero en la curva</span>
+        <span class="n">tprs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tpr_interp</span><span class="p">)</span>
+
+    <span class="n">mean_tpr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">tprs</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="c1">#promedio de los valores de las curvas de cada fold</span>
+    <span class="n">mean_tpr</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="c1">#último valor de TPR se le asigna 1</span>
+    <span class="n">mean_auc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">aucs</span><span class="p">)</span> <span class="c1">#media valores AUC</span>
+    
+    <span class="n">roc_results</span><span class="p">[</span><span class="n">K</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;fpr&quot;</span><span class="p">:</span> <span class="n">mean_fpr</span><span class="p">,</span><span class="s2">&quot;tpr&quot;</span><span class="p">:</span> <span class="n">mean_tpr</span><span class="p">,</span><span class="s2">&quot;auc&quot;</span><span class="p">:</span> <span class="n">mean_auc</span><span class="p">}</span>
+    
+    <span class="k">if</span> <span class="n">mean_auc</span> <span class="o">&gt;</span> <span class="n">best_score</span><span class="p">:</span>
+        <span class="n">best_score</span> <span class="o">=</span> <span class="n">mean_auc</span>
+        <span class="n">best_parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;K&#39;</span><span class="p">:</span> <span class="n">K</span><span class="p">}</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mejor parámetro:&quot;</span><span class="p">,</span> <span class="n">best_parameters</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mejor parámetro: {&#39;K&#39;: 18}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Se puede observar que el mejor parámetro de k_neighbors en el modelo es 18.</p>
+</section>
+<section id="metricas-de-evaluacion-knn-clasificacion">
+<h2>Métricas de evaluación - KNN Clasificación<a class="headerlink" href="#metricas-de-evaluacion-knn-clasificacion" title="Permalink to this heading">#</a></h2>
+<section id="curva-roc">
+<h3>Curva ROC<a class="headerlink" href="#curva-roc" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">K</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">roc_results</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;fpr&quot;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;tpr&quot;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;K=</span><span class="si">{</span><span class="n">K</span><span class="si">}</span><span class="s1"> (AUC=</span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;auc&quot;</span><span class="p">]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;k--&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;False Positive Rate&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;True Positive Rate&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Curvas ROC para diferentes valores de K en KNN&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/1d5daac2ad144a2f89a6d39784b4e20a62dab7f7371a1b0ca6e136292c33b90b.png" src="_images/1d5daac2ad144a2f89a6d39784b4e20a62dab7f7371a1b0ca6e136292c33b90b.png" />
+</div>
+</div>
+<p>Se evaluó el rendimiento del modelo KNN de clasificación variando el número de vecinos K y promediando el área bajo la curva (AUC) de la curva ROC, utilizando 5 folds en los conjuntos de entrenamiento para cada configuración. Se observa que valores pequeños de K presentan menor capacidad de predicción. A medida que K aumenta, el AUC mejora, alcanzando su valor máximo en 18, Sin embargo, a partir de K = 9 las mejoras son marginales.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clf</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">21</span><span class="p">)</span>
+<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_bal</span><span class="p">,</span> <span class="n">y_train_bal</span><span class="p">)</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">precision_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">recall_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">f1_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">accuracy</span> <span class="o">=</span> <span class="n">y_test</span> <span class="o">==</span> <span class="n">y_pred</span>
+<span class="n">precision</span> <span class="o">=</span> <span class="n">precision_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="n">recall</span> <span class="o">=</span> <span class="n">recall_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="n">f1score</span> <span class="o">=</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Accuracy:&#39;</span><span class="p">,</span><span class="n">accuracy</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Precision:&#39;</span><span class="p">,</span> <span class="n">precision</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Recall:&#39;</span><span class="p">,</span> <span class="n">recall</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;F1 Score:&#39;</span><span class="p">,</span><span class="n">f1score</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy: 0.848587570621469
+Precision: 0.8677165354330708
+Recall: 0.9168053244592346
+F1 Score: 0.8915857605177993
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="matriz-de-confusion">
+<h3>Matriz de confusión<a class="headerlink" href="#matriz-de-confusion" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">confusion</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="n">confusion</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[200,  84],
+       [ 50, 551]], dtype=int64)
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Accuracy: El modelo clasifica correctamente el 84.85% de los casos.</p></li>
+<li><p>Precision: Cuando el modelo predice la clase positiva (Graduate), acierta el 86.77% de las veces. Esto indica un bajo nivel de falsos positivos.</p></li>
+<li><p>Recall: El modelo detecta correctamente el 91.68% de las instancias que realmente pertenecen a la clase positiva. Esto significa que hay pocos falsos negativos.</p></li>
+<li><p>F1 Score: El equilibrio entre precision y recall, igualemente bueno con un 89.15%</p></li>
+</ul>
+</section>
+</section>
+<section id="feature-importance-knn-regresion">
+<h2>Feature Importance - KNN Regresión<a class="headerlink" href="#feature-importance-knn-regresion" title="Permalink to this heading">#</a></h2>
+<section id="codificacion-variable-objetivo-en-regresion">
+<h3>Codificación variable objetivo en regresión<a class="headerlink" href="#codificacion-variable-objetivo-en-regresion" title="Permalink to this heading">#</a></h3>
+<p>Primero creamos la variable númerica a predecir, en este caso el promedio final, que se calculará tomando la media de los valores de ‘Curricular units 2nd sem (grade)’ y ‘Curricular units 1st sem (grade)’</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_reg</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Curricular units 2nd sem (grade)&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Curricular units 1st sem (grade)&quot;</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>
+<span class="n">y_reg</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0     0.000000
+1    13.833333
+2     0.000000
+3    12.914286
+4    12.666667
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id1">
+<h3>Variables categóricas<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<p>Utilizaremos nuevamente Kruskall-Wallis para evaluar si existe una diferencia entre las medianas de los diferentes grupos en las variables categóricas con relación a la variable objetivo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">resultados</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">variables_categoricas</span><span class="p">:</span>
+    <span class="n">grupos</span> <span class="o">=</span> <span class="p">[</span><span class="n">y_reg</span><span class="p">[</span><span class="n">X</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">==</span> <span class="n">cat</span><span class="p">]</span> <span class="k">for</span> <span class="n">cat</span> <span class="ow">in</span> <span class="n">X</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()]</span>
+    
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">grupos</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">stat</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">kruskal</span><span class="p">(</span><span class="o">*</span><span class="n">grupos</span><span class="p">)</span>
+        <span class="n">resultados</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;H&quot;</span><span class="p">:</span> <span class="n">stat</span><span class="p">,</span> <span class="s2">&quot;p_value&quot;</span><span class="p">:</span> <span class="n">p</span><span class="p">}</span>
+
+<span class="c1"># Crear DataFrame ordenado por H</span>
+<span class="n">kruskal_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">resultados</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;H&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">kruskal_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                    H        p_value
+Course                     833.224518  5.136054e-167
+Tuition fees up to date    303.291268   6.320154e-68
+Application mode           240.218023   6.853992e-44
+Scholarship holder         178.935572   8.276215e-41
+Gender                     168.936692   1.263013e-38
+Mother_occ                 100.535639   1.306256e-15
+Debtor                      96.958293   7.080314e-23
+Mother_quali                96.932923   2.235672e-16
+P_quali                     95.576080   1.230791e-16
+Father_quali                86.939034   6.616765e-14
+Father_occ                  71.516957   4.214698e-10
+Attendance                  52.339414   4.669087e-13
+Marital                     46.663105   1.792278e-09
+Application order           44.605232   5.606288e-08
+Displaced                   36.632586   1.426274e-09
+Educational special needs    2.131130   1.443343e-01
+Nacionality                  0.229433   8.916190e-01
+International                0.077627   7.805395e-01
+</pre></div>
+</div>
+</div>
+</div>
+<p>En este caso seleccionaremos las 3 variables más imporantes:</p>
+<ul class="simple">
+<li><p>Course</p></li>
+<li><p>Tuition fees up to date</p></li>
+<li><p>Application mode</p></li>
+</ul>
+</section>
+<section id="id2">
+<h3>Variables numéricas<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<p>Para captar la relación entre las variables numéricas y la variable objetivo, también numérica utilizaremos correlación de Spearman, dado que no requiere de supuestos de normalidad y es útil cuando hay outliers o colas en la distribución</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">spearmanr</span>
+
+<span class="n">resultados</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">variables_numericas</span><span class="p">:</span>
+    <span class="n">corr</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">spearmanr</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">y_reg</span><span class="p">)</span>
+    <span class="n">resultados</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Corr&quot;</span><span class="p">:</span> <span class="n">corr</span><span class="p">,</span> <span class="s2">&quot;p_value&quot;</span><span class="p">:</span> <span class="n">p</span><span class="p">}</span>
+
+<span class="n">spearman_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">resultados</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;Corr&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">spearman_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Corr</th>
+      <th>p_value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Curricular units 2nd sem (grade)</th>
+      <td>0.945004</td>
+      <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>Curricular units 1st sem (grade)</th>
+      <td>0.917613</td>
+      <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>Curricular units 2nd sem (approved)</th>
+      <td>0.714711</td>
+      <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>Curricular units 1st sem (approved)</th>
+      <td>0.696827</td>
+      <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>Curricular units 2nd sem (enrolled)</th>
+      <td>0.389259</td>
+      <td>5.153249e-160</td>
+    </tr>
+    <tr>
+      <th>Curricular units 1st sem (enrolled)</th>
+      <td>0.379053</td>
+      <td>3.607921e-151</td>
+    </tr>
+    <tr>
+      <th>Admission grade</th>
+      <td>0.206520</td>
+      <td>8.107834e-44</td>
+    </tr>
+    <tr>
+      <th>Curricular units 2nd sem (evaluations)</th>
+      <td>0.182508</td>
+      <td>1.930744e-34</td>
+    </tr>
+    <tr>
+      <th>Previous qualification (grade)</th>
+      <td>0.171118</td>
+      <td>2.022600e-30</td>
+    </tr>
+    <tr>
+      <th>Curricular units 2nd sem (credited)</th>
+      <td>0.109230</td>
+      <td>3.217348e-13</td>
+    </tr>
+    <tr>
+      <th>GDP</th>
+      <td>0.106455</td>
+      <td>1.258209e-12</td>
+    </tr>
+    <tr>
+      <th>Curricular units 1st sem (credited)</th>
+      <td>0.104076</td>
+      <td>3.939978e-12</td>
+    </tr>
+    <tr>
+      <th>Curricular units 1st sem (evaluations)</th>
+      <td>0.100367</td>
+      <td>2.220285e-11</td>
+    </tr>
+    <tr>
+      <th>Unemployment rate</th>
+      <td>0.045996</td>
+      <td>2.212787e-03</td>
+    </tr>
+    <tr>
+      <th>Curricular units 1st sem (without evaluations)</th>
+      <td>-0.036689</td>
+      <td>1.466960e-02</td>
+    </tr>
+    <tr>
+      <th>Inflation rate</th>
+      <td>-0.044210</td>
+      <td>3.270150e-03</td>
+    </tr>
+    <tr>
+      <th>Curricular units 2nd sem (without evaluations)</th>
+      <td>-0.061644</td>
+      <td>4.080473e-05</td>
+    </tr>
+    <tr>
+      <th>Age</th>
+      <td>-0.228490</td>
+      <td>1.702546e-53</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>En este caso usaremos las 4 variables con mayor correlación:</p>
+<ul class="simple">
+<li><p>Curricular units 2nd sem (grade)</p></li>
+<li><p>Curricular units 1st sem (grade)</p></li>
+<li><p>Curricular units 2nd sem (approved)</p></li>
+<li><p>Curricular units 1st sem (approved)</p></li>
+</ul>
+</section>
+<section id="id3">
+<h3>Variables seleccionadas<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<p>Variables con las que trabajaremos:</p>
+<ul class="simple">
+<li><p>‘Tuition fees up to date’</p></li>
+<li><p>‘Application mode’</p></li>
+<li><p>‘Course’</p></li>
+<li><p>‘Curricular units 2nd sem (approved)’</p></li>
+<li><p>‘Curricular units 1st sem (approved)’</p></li>
+<li><p>‘Curricular units 1st sem (grade)’</p></li>
+<li><p>‘Curricular units 2nd sem (grade)’</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cols_seleccionadas_reg</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Tuition fees up to date&#39;</span><span class="p">,</span><span class="s1">&#39;Application mode&#39;</span><span class="p">,</span><span class="s1">&#39;Course&#39;</span><span class="p">,</span><span class="s1">&#39;Curricular units 2nd sem (approved)&#39;</span><span class="p">,</span>
+<span class="s1">&#39;Curricular units 1st sem (approved)&#39;</span><span class="p">,</span><span class="s1">&#39;Curricular units 1st sem (grade)&#39;</span><span class="p">,</span><span class="s1">&#39;Curricular units 2nd sem (grade)&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_reg</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">cols_seleccionadas_reg</span><span class="p">]</span>
+<span class="n">X_reg</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Tuition fees up to date</th>
+      <th>Application mode</th>
+      <th>Course</th>
+      <th>Curricular units 2nd sem (approved)</th>
+      <th>Curricular units 1st sem (approved)</th>
+      <th>Curricular units 1st sem (grade)</th>
+      <th>Curricular units 2nd sem (grade)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>17</td>
+      <td>171</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>15</td>
+      <td>9254</td>
+      <td>6</td>
+      <td>6</td>
+      <td>14.000000</td>
+      <td>13.666667</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>1</td>
+      <td>9070</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>17</td>
+      <td>9773</td>
+      <td>5</td>
+      <td>6</td>
+      <td>13.428571</td>
+      <td>12.400000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>39</td>
+      <td>8014</td>
+      <td>6</td>
+      <td>5</td>
+      <td>12.333333</td>
+      <td>13.000000</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>4419</th>
+      <td>1</td>
+      <td>1</td>
+      <td>9773</td>
+      <td>5</td>
+      <td>5</td>
+      <td>13.600000</td>
+      <td>12.666667</td>
+    </tr>
+    <tr>
+      <th>4420</th>
+      <td>0</td>
+      <td>1</td>
+      <td>9773</td>
+      <td>2</td>
+      <td>6</td>
+      <td>12.000000</td>
+      <td>11.000000</td>
+    </tr>
+    <tr>
+      <th>4421</th>
+      <td>1</td>
+      <td>1</td>
+      <td>9500</td>
+      <td>1</td>
+      <td>7</td>
+      <td>14.912500</td>
+      <td>13.500000</td>
+    </tr>
+    <tr>
+      <th>4422</th>
+      <td>1</td>
+      <td>1</td>
+      <td>9147</td>
+      <td>5</td>
+      <td>5</td>
+      <td>13.800000</td>
+      <td>12.000000</td>
+    </tr>
+    <tr>
+      <th>4423</th>
+      <td>1</td>
+      <td>Otras</td>
+      <td>9773</td>
+      <td>6</td>
+      <td>6</td>
+      <td>11.666667</td>
+      <td>13.000000</td>
+    </tr>
+  </tbody>
+</table>
+<p>4424 rows × 7 columns</p>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="tratamiento-variables-categoricas-regresion">
+<h2>Tratamiento variables categóricas - Regresión<a class="headerlink" href="#tratamiento-variables-categoricas-regresion" title="Permalink to this heading">#</a></h2>
+<p>Usaremos nuevamente OneHot Encoding para las variables ‘Application mode’ y ‘Course’.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ohe</span> <span class="o">=</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">sparse</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">drop</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">handle_unknown</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span> 
+
+<span class="n">X_ohe</span>  <span class="o">=</span> <span class="n">ohe</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_reg</span><span class="p">[[</span><span class="s1">&#39;Application mode&#39;</span><span class="p">,</span> <span class="s1">&#39;Course&#39;</span><span class="p">]])</span> 
+<span class="n">ohe_columns</span> <span class="o">=</span> <span class="n">ohe</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">()</span> 
+<span class="n">X_ohe_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_ohe</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">ohe_columns</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">index</span><span class="p">)</span> 
+
+<span class="n">X_reg</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">X_reg</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Application mode&#39;</span><span class="p">,</span> <span class="s1">&#39;Course&#39;</span><span class="p">]),</span> <span class="n">X_ohe_df</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> 
+
+<span class="n">X_reg</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\USER\miniconda3\envs\ml_venv\lib\site-packages\sklearn\preprocessing\_encoders.py:868: FutureWarning: `sparse` was renamed to `sparse_output` in version 1.2 and will be removed in 1.4. `sparse_output` is ignored unless you leave `sparse` to its default value.
+  warnings.warn(
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Tuition fees up to date</th>
+      <th>Curricular units 2nd sem (approved)</th>
+      <th>Curricular units 1st sem (approved)</th>
+      <th>Curricular units 1st sem (grade)</th>
+      <th>Curricular units 2nd sem (grade)</th>
+      <th>Application mode_1</th>
+      <th>Application mode_15</th>
+      <th>Application mode_16</th>
+      <th>Application mode_17</th>
+      <th>Application mode_18</th>
+      <th>...</th>
+      <th>Course_9147</th>
+      <th>Course_9238</th>
+      <th>Course_9254</th>
+      <th>Course_9500</th>
+      <th>Course_9556</th>
+      <th>Course_9670</th>
+      <th>Course_9773</th>
+      <th>Course_9853</th>
+      <th>Course_9991</th>
+      <th>Course_Otras</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>6</td>
+      <td>6</td>
+      <td>14.000000</td>
+      <td>13.666667</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>5</td>
+      <td>6</td>
+      <td>13.428571</td>
+      <td>12.400000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>6</td>
+      <td>5</td>
+      <td>12.333333</td>
+      <td>13.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 36 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="tratamiento-variables-numericas-regresion">
+<h2>Tratamiento variables numéricas - Regresión<a class="headerlink" href="#tratamiento-variables-numericas-regresion" title="Permalink to this heading">#</a></h2>
+<p>Se usará RobustScaler para las variables numéricas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Curricular units 2nd sem (approved)&#39;</span><span class="p">,</span> <span class="s1">&#39;Curricular units 1st sem (approved)&#39;</span><span class="p">,</span><span class="s1">&#39;Curricular units 1st sem (grade)&#39;</span><span class="p">,</span><span class="s1">&#39;Curricular units 2nd sem (grade)&#39;</span><span class="p">]</span>
+
+<span class="n">X_reg</span><span class="p">[</span><span class="n">num_columns</span><span class="p">]</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_reg</span><span class="p">[</span><span class="n">num_columns</span><span class="p">])</span>
+
+<span class="n">X_reg</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Curricular units 2nd sem (approved)</th>
+      <th>Curricular units 1st sem (approved)</th>
+      <th>Curricular units 1st sem (grade)</th>
+      <th>Curricular units 2nd sem (grade)</th>
+      <th>Application mode_1</th>
+      <th>Application mode_15</th>
+      <th>Application mode_16</th>
+      <th>Application mode_17</th>
+      <th>Application mode_18</th>
+      <th>Application mode_39</th>
+      <th>...</th>
+      <th>Course_9147</th>
+      <th>Course_9238</th>
+      <th>Course_9254</th>
+      <th>Course_9500</th>
+      <th>Course_9556</th>
+      <th>Course_9670</th>
+      <th>Course_9773</th>
+      <th>Course_9853</th>
+      <th>Course_9991</th>
+      <th>Course_Otras</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>...</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+      <td>4424.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>-0.141049</td>
+      <td>-0.097800</td>
+      <td>-0.685372</td>
+      <td>-0.762501</td>
+      <td>0.386076</td>
+      <td>0.006781</td>
+      <td>0.008590</td>
+      <td>0.197107</td>
+      <td>0.028029</td>
+      <td>0.177441</td>
+      <td>...</td>
+      <td>0.085895</td>
+      <td>0.080244</td>
+      <td>0.056962</td>
+      <td>0.173146</td>
+      <td>0.019439</td>
+      <td>0.060579</td>
+      <td>0.074819</td>
+      <td>0.043400</td>
+      <td>0.060579</td>
+      <td>0.002712</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>0.753691</td>
+      <td>1.031413</td>
+      <td>2.018193</td>
+      <td>2.017087</td>
+      <td>0.486903</td>
+      <td>0.082078</td>
+      <td>0.092291</td>
+      <td>0.397859</td>
+      <td>0.165074</td>
+      <td>0.382085</td>
+      <td>...</td>
+      <td>0.280241</td>
+      <td>0.271701</td>
+      <td>0.231796</td>
+      <td>0.378417</td>
+      <td>0.138079</td>
+      <td>0.238583</td>
+      <td>0.263129</td>
+      <td>0.203778</td>
+      <td>0.238583</td>
+      <td>0.052017</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>-1.250000</td>
+      <td>-1.666667</td>
+      <td>-5.119048</td>
+      <td>-4.722581</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>-0.750000</td>
+      <td>-0.666667</td>
+      <td>-0.535714</td>
+      <td>-0.561290</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>0.250000</td>
+      <td>0.333333</td>
+      <td>0.464286</td>
+      <td>0.438710</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>3.750000</td>
+      <td>7.000000</td>
+      <td>2.745536</td>
+      <td>2.466359</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>...</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+<p>8 rows × 35 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="separacion-de-los-datasets-regresion">
+<h2>Separación de los Datasets - Regresión<a class="headerlink" href="#separacion-de-los-datasets-regresion" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train_full_reg</span><span class="p">,</span> <span class="n">X_test_reg</span><span class="p">,</span> <span class="n">y_train_full_reg</span><span class="p">,</span> <span class="n">y_test_reg</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_reg</span><span class="p">,</span> <span class="n">y_reg</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#stratify mantiene las proporciones de la clase </span>
+<span class="n">X_train_reg</span><span class="p">,</span> <span class="n">X_val_reg</span><span class="p">,</span> <span class="n">y_train_reg</span><span class="p">,</span> <span class="n">y_val_reg</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_train_full_reg</span><span class="p">,</span> <span class="n">y_train_full_reg</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="grid-search-manual-con-kfold-knn-regresion">
+<h2>Grid-Search manual con KFold - KNN regresión<a class="headerlink" href="#grid-search-manual-con-kfold-knn-regresion" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsRegressor</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_log_error</span>
+
+<span class="n">kf</span> <span class="o">=</span> <span class="n">KFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> 
+
+<span class="n">rmsle_val</span> <span class="o">=</span> <span class="p">[]</span> 
+<span class="n">best_rmsle</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">22</span><span class="p">):</span>
+    <span class="n">fold_rmsles</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="k">for</span> <span class="n">train_idx</span><span class="p">,</span> <span class="n">val_idx</span> <span class="ow">in</span> <span class="n">kf</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X_train_reg</span><span class="p">):</span>
+        <span class="n">X_train_fold</span> <span class="o">=</span> <span class="n">X_train_reg</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_idx</span><span class="p">]</span>
+        <span class="n">y_train_fold</span> <span class="o">=</span> <span class="n">y_train_reg</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_idx</span><span class="p">]</span>
+        
+        <span class="n">knn</span> <span class="o">=</span> <span class="n">KNeighborsRegressor</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="n">k</span><span class="p">)</span>
+        <span class="n">knn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_fold</span><span class="p">,</span> <span class="n">y_train_fold</span><span class="p">)</span>
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">knn</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_val_reg</span><span class="p">)</span>
+        
+        <span class="n">rmsle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mean_squared_log_error</span><span class="p">(</span><span class="n">y_val_reg</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+        <span class="n">fold_rmsles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rmsle</span><span class="p">)</span>
+    
+    <span class="n">mean_rmsle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">fold_rmsles</span><span class="p">)</span>
+    <span class="n">rmsle_val</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mean_rmsle</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">mean_rmsle</span> <span class="o">&lt;</span> <span class="n">best_rmsle</span><span class="p">:</span>
+        <span class="n">best_rmsle</span> <span class="o">=</span> <span class="n">mean_rmsle</span>
+        <span class="n">best_k</span> <span class="o">=</span> <span class="n">k</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mejor k: </span><span class="si">{</span><span class="n">best_k</span><span class="si">}</span><span class="s2"> con RMSLE promedio = </span><span class="si">{</span><span class="n">best_rmsle</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;RMSLE por k:&quot;</span><span class="p">,</span> <span class="n">best_rmsle</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mejor k: 6 con RMSLE promedio = 0.0297
+RMSLE por k: 0.02966236402956679
+</pre></div>
+</div>
+</div>
+</div>
+<p>El mejor número de K vecinos en KNN para clasificación, en este caso es de 6</p>
+</section>
+<section id="metricas-evaluacion">
+<h2>Métricas evaluación<a class="headerlink" href="#metricas-evaluacion" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_absolute_error</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">r2_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">explained_variance_score</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">knn</span> <span class="o">=</span> <span class="n">KNeighborsRegressor</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">knn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_reg</span><span class="p">,</span> <span class="n">y_train_reg</span><span class="p">)</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">knn</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_reg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="grafica-valores-reales-vs-predichos">
+<h3>Gráfica valores reales vs predichos<a class="headerlink" href="#grafica-valores-reales-vs-predichos" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y_test_reg</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">y_test_reg</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">y_test_reg</span><span class="o">.</span><span class="n">max</span><span class="p">()],</span> <span class="p">[</span><span class="n">y_test_reg</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">y_test_reg</span><span class="o">.</span><span class="n">max</span><span class="p">()],</span> 
+         <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Valor real&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Valor predicho&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Predicciones vs Valores reales (K=</span><span class="si">{</span><span class="n">best_k</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/6952383f9a6448b24cc8e07a3432455fa31d8a60882203e4a3da5a7d48a34910.png" src="_images/6952383f9a6448b24cc8e07a3432455fa31d8a60882203e4a3da5a7d48a34910.png" />
+</div>
+</div>
+<p>Los puntos azules (valores reales) se encuentran muy cercanos a la línea roja, lo que indica que el modelo de regresión de KNN con k=6 tiene buena capacidad de ajuste y un bajo error en el RMSLE. Los diferentes grupos definidos que se observan se deben a la distribución de las variables utilizadas para la predicción, ya que un gran porcentaje de las notas (empleadas para construir la variable objetivo) presentaban concentraciones elevadas de valores cercanos a 0. Por esta misma razón se utilizó RobustScaler para escalar las variables numéricas y reducir el impacto de dichos valores atípicos en el modelo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r2_valid</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test_reg</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="n">mae_valid</span> <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_test_reg</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="n">evs_valid</span> <span class="o">=</span> <span class="n">explained_variance_score</span><span class="p">(</span><span class="n">y_test_reg</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">multioutput</span><span class="o">=</span><span class="s1">&#39;uniform_average&#39;</span><span class="p">)</span>
+<span class="n">rmse_valid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test_reg</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+<span class="n">rmsle_valid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mean_squared_log_error</span><span class="p">(</span><span class="n">y_test_reg</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;R2 Valid:&#39;</span><span class="p">,</span><span class="n">r2_valid</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;EVS Valid:&#39;</span><span class="p">,</span> <span class="n">evs_valid</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;MAE Valid:&#39;</span><span class="p">,</span> <span class="n">mae_valid</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;RMSE Valid:&#39;</span><span class="p">,</span><span class="n">rmse_valid</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;RMSLE Valid:&#39;</span><span class="p">,</span> <span class="n">rmsle_valid</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R2 Valid: 0.9946456492878558
+EVS Valid: 0.9947483776258838
+MAE Valid: 0.2208141958223786
+RMSE Valid: 0.3555610788827271
+RMSLE Valid: 0.027576884386674876
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>R2: El modelo explica el 99.4% de la variabilidad en los datos de prueba. Esto indica un ajuste extremadamente alto. Debido en parte a la codificación de la variable objetivo, la cual se codificó promediando las notas del primer y segundo semestre.</p></li>
+<li><p>EVS: La varianza de los errores es muy baja y que las predicciones siguen de cerca la variabilidad real de los datos.</p></li>
+<li><p>MAE: En promedio, las predicciones se desvían solo 0.22 unidades de los valores reales.</p></li>
+<li><p>RMSE: El error cuadrático medio es bajo, lo que significa que no hay errores grandes dominando el desempeño.</p></li>
+<li><p>RMSLE: El error relativo en escala logarítmica es mínimo, lo que implica que el modelo no solo predice bien en magnitudes grandes, sino también en valores pequeños.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="edakk.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">EDA - Exploratory Data Analysis</p>
+      </div>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#renombrar-columnas">Renombrar columnas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#agrupar-categorias-en-las-variable-categoricas">Agrupar categorias en las variable categóricas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#encoding-variable-target">Encoding variable Target</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-categoricas">Variables categóricas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-numericas">Variables numéricas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-seleccionadas">Variables seleccionadas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tratamiento-de-variables-categoricas-clasificacion">Tratamiento de variables categóricas - Clasificación</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#one-hot-encoder">One-Hot encoder</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tratamiento-de-variables-numericas-clasificacion">Tratamiento de variables númericas - Clasificación</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#robustscaler-para-distribuciones-cero-infladas">RobustScaler para distribuciones cero-infladas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#separamos-los-conjuntos-de-validacion-train-y-test-clasificacion">Separamos los conjuntos de validación, train y test - Clasificación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#balancear-clases">Balancear clases</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grid-search-manual-con-kfold-knn-clasificacion">Grid-Search manual con Kfold - KNN Clasificación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metricas-de-evaluacion-knn-clasificacion">Métricas de evaluación - KNN Clasificación</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#curva-roc">Curva ROC</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matriz-de-confusion">Matriz de confusión</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-importance-knn-regresion">Feature Importance - KNN Regresión</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#codificacion-variable-objetivo-en-regresion">Codificación variable objetivo en regresión</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Variables categóricas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Variables numéricas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Variables seleccionadas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tratamiento-variables-categoricas-regresion">Tratamiento variables categóricas - Regresión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tratamiento-variables-numericas-regresion">Tratamiento variables numéricas - Regresión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#separacion-de-los-datasets-regresion">Separación de los Datasets - Regresión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grid-search-manual-con-kfold-knn-regresion">Grid-Search manual con KFold - KNN regresión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metricas-evaluacion">Métricas evaluación</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grafica-valores-reales-vs-predichos">Gráfica valores reales vs predichos</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Cristian Linero, David Marquez
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
