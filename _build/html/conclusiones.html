@@ -1,0 +1,661 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Conclusiones del Proyecto &#8212; Predicción del Riesgo de Abandono Académico en Estudiantes Universitarios</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'conclusiones';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Modelado" href="notebooks.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="introduccion.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/uninorte.png" class="logo__image only-light" alt="Predicción del Riesgo de Abandono Académico en Estudiantes Universitarios - Home"/>
+    <script>document.write(`<img src="_static/uninorte.png" class="logo__image only-dark" alt="Predicción del Riesgo de Abandono Académico en Estudiantes Universitarios - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="introduccion.html">
+                    Información del Proyecto
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="eda.html">Análisis Exploratorio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Modelado</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Conclusiones del Proyecto</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/cristianclc/Miniproyecto-KNN" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/cristianclc/Miniproyecto-KNN/issues/new?title=Issue%20on%20page%20%2Fconclusiones.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/conclusiones.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Conclusiones del Proyecto</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-general">Resumen General</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#principales-hallazgos-del-analisis-exploratorio">Principales Hallazgos del Análisis Exploratorio</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-de-la-variable-objetivo">Distribución de la Variable Objetivo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#factores-asociados-al-abandono">Factores Asociados al Abandono</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#factores-asociados-al-promedio-final">Factores Asociados al Promedio Final</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rendimiento-del-modelo-de-clasificacion-k-21">Rendimiento del Modelo de Clasificación (k = 21)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rendimiento-del-modelo-de-regresion-k-6">Rendimiento del Modelo de Regresión (k = 6)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ventajas-y-limitaciones-del-metodo-knn">Ventajas y Limitaciones del Método KNN</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ventajas-identificadas">Ventajas identificadas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limitaciones-identificadas">Limitaciones identificadas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusiones-finales">Conclusiones Finales</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="conclusiones-del-proyecto">
+<h1>Conclusiones del Proyecto<a class="headerlink" href="#conclusiones-del-proyecto" title="Link to this heading">#</a></h1>
+<section id="resumen-general">
+<h2>Resumen General<a class="headerlink" href="#resumen-general" title="Link to this heading">#</a></h2>
+<p>El presente proyecto tuvo como objetivo desarrollar modelos de <strong>clasificación</strong> (predicción de abandono) y <strong>regresión</strong> (predicción del promedio final) utilizando el algoritmo <strong>K-Nearest Neighbors (KNN)</strong> sobre un conjunto de datos real de estudiantes universitarios. A continuación se presentan las principales conclusiones derivadas del análisis exploratorio, la selección de variables y la evaluación de los modelos.</p>
+</section>
+<section id="principales-hallazgos-del-analisis-exploratorio">
+<h2>Principales Hallazgos del Análisis Exploratorio<a class="headerlink" href="#principales-hallazgos-del-analisis-exploratorio" title="Link to this heading">#</a></h2>
+<section id="distribucion-de-la-variable-objetivo">
+<h3>Distribución de la Variable Objetivo<a class="headerlink" href="#distribucion-de-la-variable-objetivo" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>La variable <code class="docutils literal notranslate"><span class="pre">Target</span></code> presentó una distribución <strong>relativamente equilibrada</strong>: 49.9% graduados, 32.1% abandonos y 17.9% matriculados. Esto permitió un modelado de clasificación sin problemas extremos de desbalance.</p></li>
+<li><p>Se reclasificó la variable a formato binario (<code class="docutils literal notranslate"><span class="pre">Graduate</span></code> = 0, <code class="docutils literal notranslate"><span class="pre">Dropout</span></code> = 1) para enfocar el análisis en la predicción de deserción.</p></li>
+</ul>
+</section>
+<section id="factores-asociados-al-abandono">
+<h3>Factores Asociados al Abandono<a class="headerlink" href="#factores-asociados-al-abandono" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Factores financieros</strong> (<code class="docutils literal notranslate"><span class="pre">Tuition</span> <span class="pre">fees</span> <span class="pre">up</span> <span class="pre">to</span> <span class="pre">date</span></code>, <code class="docutils literal notranslate"><span class="pre">Debtor</span></code>, <code class="docutils literal notranslate"><span class="pre">Scholarship</span> <span class="pre">holder</span></code>) mostraron la asociación más fuerte con el abandono, según las pruebas Chi-Cuadrado.</p></li>
+<li><p>El <strong>rendimiento académico</strong> (especialmente unidades aprobadas y calificaciones del segundo semestre) resultó ser el principal discriminante entre estudiantes que abandonan y los que se gradúan.</p></li>
+<li><p>Variables como <code class="docutils literal notranslate"><span class="pre">Nacionality</span></code>, <code class="docutils literal notranslate"><span class="pre">International</span></code> y <code class="docutils literal notranslate"><span class="pre">Educational</span> <span class="pre">special</span> <span class="pre">needs</span></code> no mostraron asociación significativa con el abandono, por lo que fueron excluidas del modelo.</p></li>
+</ul>
+</section>
+<section id="factores-asociados-al-promedio-final">
+<h3>Factores Asociados al Promedio Final<a class="headerlink" href="#factores-asociados-al-promedio-final" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Las <strong>calificaciones semestrales</strong> presentaron una correlación casi perfecta con el promedio final (Spearman &gt; 0.94), lo que era esperable dado que la variable objetivo se construyó como el promedio de ambas.</p></li>
+<li><p>El <code class="docutils literal notranslate"><span class="pre">Course</span></code> (programa de estudios) resultó ser la variable categórica más relevante para predecir el rendimiento académico, reflejando diferencias en la dificultad entre carreras.</p></li>
+</ul>
+</section>
+</section>
+<section id="rendimiento-del-modelo-de-clasificacion-k-21">
+<h2>Rendimiento del Modelo de Clasificación (k = 21)<a class="headerlink" href="#rendimiento-del-modelo-de-clasificacion-k-21" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Métrica</p></th>
+<th class="head"><p>Valor</p></th>
+<th class="head"><p>Evaluación</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Accuracy</strong></p></td>
+<td><p>84.85%</p></td>
+<td><p>Buen rendimiento general</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Precision</strong></p></td>
+<td><p>86.77%</p></td>
+<td><p>Bajo nivel de falsas alarmas</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Recall</strong></p></td>
+<td><p>91.68%</p></td>
+<td><p>Excelente capacidad para detectar abandonos reales</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>F1-Score</strong></p></td>
+<td><p>89.15%</p></td>
+<td><p>Equilibrio óptimo entre precisión y sensibilidad</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>AUC-ROC</strong></p></td>
+<td><p>Alto (no calculado explícitamente)</p></td>
+<td><p>Buena capacidad discriminante en todos los umbrales</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Conclusión sobre clasificación:</strong> El modelo es <strong>altamente sensible</strong> (recall = 91.68%), lo cual es fundamental para un sistema de alerta temprana donde el costo de no detectar un abandono real es mucho mayor que el de generar una falsa alarma. La precisión del 86.77% es aceptable y el modelo es <strong>apto para su implementación</strong>.</p>
+</section>
+<section id="rendimiento-del-modelo-de-regresion-k-6">
+<h2>Rendimiento del Modelo de Regresión (k = 6)<a class="headerlink" href="#rendimiento-del-modelo-de-regresion-k-6" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Métrica</p></th>
+<th class="head"><p>Valor</p></th>
+<th class="head"><p>Evaluación</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>R²</strong></p></td>
+<td><p>0.9946</p></td>
+<td><p>El modelo explica el 99.46% de la variabilidad</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>EVS</strong></p></td>
+<td><p>0.9947</p></td>
+<td><p>Ausencia de sesgos sistemáticos</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>MAE</strong></p></td>
+<td><p>0.2208</p></td>
+<td><p>Error promedio de menos de un cuarto de punto (escala 0-20)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>RMSE</strong></p></td>
+<td><p>0.3556</p></td>
+<td><p>Sin errores catastróficos</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>RMSLE</strong></p></td>
+<td><p>0.0276</p></td>
+<td><p>Error porcentual mínimo (~2.8%)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Conclusión sobre regresión:</strong> El modelo presenta un <strong>rendimiento sobresaliente</strong>. El alto R² era esperable dado que la variable objetivo se construyó como promedio de variables predictoras. La precisión absoluta (MAE = 0.22) y relativa (RMSLE = 2.8%) lo hacen <strong>altamente confiable</strong> para predecir el promedio final de los estudiantes.</p>
+</section>
+<section id="ventajas-y-limitaciones-del-metodo-knn">
+<h2>Ventajas y Limitaciones del Método KNN<a class="headerlink" href="#ventajas-y-limitaciones-del-metodo-knn" title="Link to this heading">#</a></h2>
+<section id="ventajas-identificadas">
+<h3>Ventajas identificadas<a class="headerlink" href="#ventajas-identificadas" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Simplicidad y transparencia:</strong> El algoritmo es fácil de entender e interpretar.</p></li>
+<li><p><strong>No paramétrico:</strong> No asume distribuciones específicas de los datos.</p></li>
+<li><p><strong>Flexibilidad:</strong> Puede usarse tanto para clasificación como para regresión.</p></li>
+<li><p><strong>Robustez con escalamiento adecuado:</strong> El uso de <code class="docutils literal notranslate"><span class="pre">RobustScaler</span></code> mitigó el impacto de outliers.</p></li>
+</ul>
+</section>
+<section id="limitaciones-identificadas">
+<h3>Limitaciones identificadas<a class="headerlink" href="#limitaciones-identificadas" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Sensibilidad a la escala de las variables:</strong> Fue necesario aplicar escalamiento exhaustivo.</p></li>
+<li><p><strong>Dependencia de la selección de k:</strong> El rendimiento varía significativamente con el valor de k, requiriendo validación manual.</p></li>
+<li><p><strong>Coste computacional:</strong> Aunque no fue un problema con este dataset, KNN puede ser costoso en datasets muy grandes.</p></li>
+<li><p><strong>Dificultad con alta dimensionalidad:</strong> El proyecto manejó una dimensión moderada, evitando la maldición de la dimensionalidad.</p></li>
+</ul>
+</section>
+</section>
+<section id="conclusiones-finales">
+<h2>Conclusiones Finales<a class="headerlink" href="#conclusiones-finales" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Para la universidad:</strong> El modelo de clasificación (k=21) puede implementarse como un <strong>sistema de alerta temprana</strong> que identifique a estudiantes en riesgo de abandono, priorizando las variables financieras y de rendimiento académico.</p></li>
+<li><p><strong>Para la predicción de rendimiento:</strong> El modelo de regresión (k=6) es <strong>altamente preciso</strong> y puede utilizarse para estimar el promedio final de los estudiantes, permitiendo intervenciones tempranas.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="notebooks.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Modelado</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-general">Resumen General</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#principales-hallazgos-del-analisis-exploratorio">Principales Hallazgos del Análisis Exploratorio</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-de-la-variable-objetivo">Distribución de la Variable Objetivo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#factores-asociados-al-abandono">Factores Asociados al Abandono</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#factores-asociados-al-promedio-final">Factores Asociados al Promedio Final</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rendimiento-del-modelo-de-clasificacion-k-21">Rendimiento del Modelo de Clasificación (k = 21)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rendimiento-del-modelo-de-regresion-k-6">Rendimiento del Modelo de Regresión (k = 6)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ventajas-y-limitaciones-del-metodo-knn">Ventajas y Limitaciones del Método KNN</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ventajas-identificadas">Ventajas identificadas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limitaciones-identificadas">Limitaciones identificadas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusiones-finales">Conclusiones Finales</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By David Marquez & Cristian Linero
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
